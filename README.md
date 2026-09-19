@@ -58,7 +58,7 @@ Abre `http://localhost:8000`.
 ## Instalar en la Raspberry Pi
 
 ```bash
-git clone https://github.com/telecomaster/mochila-demo.git
+git clone https://github.com/tabatapinto11-cloud/mochila-demo.git
 cd mochila-demo
 bash scripts/install-pi.sh
 ```
