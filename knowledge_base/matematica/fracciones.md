@@ -9,7 +9,7 @@ PISTAS:
 - Ahora escribe cuantos pedazos te tocaron. Ese numero va arriba.
 - Prueba con el mismo pan partido en 4. Cambia el numero de abajo? Cambia el de arriba?
 ERROR COMUN: pensar que el numero de arriba es siempre mayor, o partir en pedazos de distinto tamano.
-LENGUA: aymara: t'aqa (parte, porcion) / quechua: t'aqa (division, parte)
+PALABRAS TRADUCIDAS: aymara: t'aqa (parte, porcion) / quechua: t'aqa (division, parte)
 
 ---
 
@@ -22,7 +22,7 @@ PISTAS:
 - Compara las superficies pintadas antes de mirar los numeros.
 - Que le paso al numero de arriba y al de abajo cuando pasaste de 1/2 a 2/4?
 ERROR COMUN: creer que 2/4 es mas que 1/2 porque los numeros son mas grandes.
-LENGUA: aymara: pachpa (igual, lo mismo)
+PALABRAS TRADUCIDAS: aymara: pachpa (igual, lo mismo)
 
 ---
 
@@ -59,7 +59,7 @@ PISTAS:
 - Si es la cuarta parte, cuanto es la cuarta parte de 120?
 - Ese resultado es lo que pagas o lo que te descuentan?
 ERROR COMUN: restar 25 bolivianos en vez del 25 por ciento; o confundir lo descontado con lo que se paga.
-LENGUA: quechua: pachak (cien)
+PALABRAS TRADUCIDAS: quechua: pachak (cien)
 
 ---
 
