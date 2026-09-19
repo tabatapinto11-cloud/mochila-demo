@@ -5,7 +5,7 @@ respuestas: recupera el andamiaje que el equipo docente escribió para cada
 concepto del Currículo Base y lo entrega en pistas escalonadas.
 
 Corre en una **Raspberry Pi ** sin conexión a internet.
-
+![Test en un host local](test_mochila.JPG)
 ## Por qué esta versión no usa un LLM
 
 El repositorio principal (`proyecto-colegios`) genera respuestas con Ollama +
