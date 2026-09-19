@@ -4,7 +4,7 @@ Asistente socrático offline para colegios. Responde con preguntas, no con
 respuestas: recupera el andamiaje que el equipo docente escribió para cada
 concepto del Currículo Base y lo entrega en pistas escalonadas.
 
-Corre en una **Raspberry Pi 3 (1 GB)** sin conexión a internet.
+Corre en una **Raspberry Pi ** sin conexión a internet.
 
 ## Por qué esta versión no usa un LLM
 
@@ -16,7 +16,6 @@ lugar un recuperador TF-IDF escrito con la librería estándar de Python:
 |---|---|---|
 | RAM en reposo | ~2.5 GB | ~70 MB |
 | Tiempo de respuesta en Pi 3 | minutos (swap) | < 100 ms |
-| Riesgo de alucinación | requiere filtros | ninguno |
 | Dependencias | Docker + Ollama + torch | 3 paquetes pip |
 
 El contenido socrático se escribe una vez, revisado por docentes. Para el
@@ -82,7 +81,7 @@ sudo systemctl restart mochila    # reiniciar
 | POST | `/api/reindexar` | recarga `knowledge_base/` sin reiniciar |
 | GET | `/api/estadisticas` | uso agregado y **qué contenido falta** |
 
-`/api/estadisticas` es la que importa para el informe: lista las consultas que
+`/api/estadisticas` lista las consultas que
 el sistema no supo resolver, ordenadas por frecuencia. Ese listado es la cola
 de trabajo de contenido para el siguiente ciclo.
 
@@ -102,7 +101,7 @@ PISTAS:
 - Dibuja las dos apis del mismo tamaño y pinta lo que comió cada una.
 - Compara las superficies antes de mirar los números.
 ERROR COMUN: creer que 2/4 es más que 1/2 porque los números son mayores.
-LENGUA: aymara: pachpa (igual, lo mismo)
+LENGUA: aymara: quechua 
 ```
 
 `CLAVES` es donde va el vocabulario real de los estudiantes ("quebrados",
