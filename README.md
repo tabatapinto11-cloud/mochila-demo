@@ -101,7 +101,7 @@ PISTAS:
 - Dibuja las dos apis del mismo tamaño y pinta lo que comió cada una.
 - Compara las superficies antes de mirar los números.
 ERROR COMUN: creer que 2/4 es más que 1/2 porque los números son mayores.
-LENGUA: aymara: quechua 
+PALABRAS TRADUCIDAS: aymara: quechua 
 ```
 
 `CLAVES` es donde va el vocabulario real de los estudiantes ("quebrados",
