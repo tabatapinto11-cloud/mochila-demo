@@ -31,8 +31,7 @@
     -webkit-text-size-adjust:100%;
   }
 
-  /* Franja de aguayo: el unico elemento decorativo de la pagina.
-     Se repite abajo, en miniatura, para marcar cada pista revelada. */
+  /* Franja de aguayo: el unico elemento decorativo de la pagina. */
   .aguayo{
     height:10px;
     background:repeating-linear-gradient(90deg,
@@ -124,9 +123,7 @@
   <header>
     <h1>Mochila Virtual</h1>
     <p>
-      Preguntale lo que no entendiste de la clase. No te va a dar la respuesta:
-      te va a devolver una pregunta para que la encuentres vos.
-      Funciona <span class="sede">sin internet</span>, dentro de la red del colegio.
+      Preguntale lo que no entendiste de la clase. El tutor te ayudará a encontrar la respuesta.
     </p>
   </header>
 
@@ -144,7 +141,7 @@
   <section class="respuesta" id="respuesta" aria-live="polite"></section>
 
   <footer>
-    Servidor: Raspberry Pi 3 en la red local del colegio ·
+    Servidor: Raspberry Pi en la red local del colegio ·
     <b id="fragmentos">–</b> conceptos del curriculo cargados ·
     no se guarda ningun dato personal de los estudiantes
   </footer>
@@ -270,7 +267,7 @@ function dibujar(){
   if(ultima.lengua_originaria){
     const n = document.createElement("div");
     n.className = "nota";
-    n.innerHTML = `<span>En tu idioma:</span> ${ultima.lengua_originaria}`;
+    n.innerHTML = `<span>Pregunta en el idioma de tu preferencia:</span> ${ultima.lengua_originaria}`;
     caja.appendChild(n);
   }
 }
