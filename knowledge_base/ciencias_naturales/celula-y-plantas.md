@@ -9,7 +9,7 @@ PISTAS:
 - Una piedra tambien tiene partes pequenas, pero estan vivas? Que diferencia hay?
 - Que necesita tener esa pieza para estar viva: comer, crecer, reproducirse?
 ERROR COMUN: pensar que solo los animales tienen celulas, o que una celula se ve a simple vista.
-LENGUA: aymara: jakawi (vida) / quechua: kawsay (vida)
+PALABRAS TRADUCIDAS: aymara: jakawi (vida) / quechua: kawsay (vida)
 
 ---
 
@@ -22,7 +22,7 @@ PISTAS:
 - Si la tapas con una caja oscura una semana, que le pasa? Que ingrediente le quitaste?
 - La planta suelta algo al aire mientras hace esto. Que gas respiramos nosotros?
 ERROR COMUN: creer que la planta "come" tierra, o que la fotosintesis ocurre de noche.
-LENGUA: aymara: qhana (luz), quri (hoja tierna en algunas variantes)
+PALABRAS TRADUCIDAS: aymara: qhana (luz), quri (hoja tierna en algunas variantes)
 
 ---
 
@@ -35,7 +35,7 @@ PISTAS:
 - Si el porcentaje no cambia, que si cambia con la altura? Piensa en cuanto aire tienes encima.
 - Con menos presion, cuantas moleculas de oxigeno entran en cada respiro?
 ERROR COMUN: decir que en la altura "hay menos oxigeno en el aire" en lugar de menos presion.
-LENGUA: aymara: samaña (respirar)
+PALABRAS TRADUCIDAS: aymara: samaña (respirar)
 
 ---
 
