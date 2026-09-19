@@ -1,0 +1,6 @@
+# Solo tres dependencias. Nada de torch, faiss ni transformers: el
+# recuperador TF-IDF usa unicamente la libreria estandar de Python.
+# Esto es lo que permite que el demo corra en una Raspberry Pi 3 de 1 GB.
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4

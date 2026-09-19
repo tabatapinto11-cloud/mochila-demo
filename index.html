@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mochila Virtual</title>
+<!--
+  Sin fuentes ni scripts externos a proposito: el servidor no tiene internet.
+  Todo lo que necesita la pagina viaja en este archivo.
+-->
+<style>
+  :root{
+    --tinta:#182a45;
+    --tinta-suave:#5a6884;
+    --papel:#fffdf8;
+    --hueso:#ece5d8;
+    --fucsia:#c0246b;
+    --ambar:#e39a2a;
+    --verde:#0f7a63;
+    --radio:3px;
+    --texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--papel);
+    color:var(--tinta);
+    font-family:var(--texto);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* Franja de aguayo: el unico elemento decorativo de la pagina.
+     Se repite abajo, en miniatura, para marcar cada pista revelada. */
+  .aguayo{
+    height:10px;
+    background:repeating-linear-gradient(90deg,
+      var(--fucsia) 0 14px, var(--tinta) 14px 20px, var(--ambar) 20px 30px,
+      var(--verde) 30px 36px, var(--hueso) 36px 42px);
+  }
+
+  .marco{max-width:44rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+  header h1{
+    font-size:1.5rem;font-weight:650;letter-spacing:-.015em;margin:1.5rem 0 .2rem;
+  }
+  header p{margin:0 0 2rem;color:var(--tinta-suave);max-width:34rem}
+  header .sede{color:var(--verde);font-weight:600}
+
+  /* ---- entrada ---- */
+  .caja{border:1.5px solid var(--tinta);border-radius:var(--radio);background:#fff}
+  .caja textarea{
+    width:100%;border:0;padding:.9rem 1rem;font:inherit;color:inherit;
+    resize:none;background:transparent;display:block;
+  }
+  .caja textarea:focus{outline:none}
+  .caja:focus-within{box-shadow:0 0 0 3px rgba(24,42,69,.16)}
+  .barra{
+    display:flex;align-items:center;gap:.75rem;justify-content:space-between;
+    border-top:1px solid var(--hueso);padding:.5rem .6rem .5rem 1rem;
+  }
+  .barra small{color:var(--tinta-suave)}
+  button{
+    font:inherit;font-weight:600;cursor:pointer;border-radius:var(--radio);
+    border:1.5px solid var(--tinta);background:var(--tinta);color:#fff;
+    padding:.45rem 1.1rem;
+  }
+  button:hover{background:#0f1d33}
+  button:disabled{opacity:.45;cursor:default}
+  button.suave{background:transparent;color:var(--tinta);border-color:var(--hueso)}
+  button.suave:hover{background:var(--hueso)}
+  :focus-visible{outline:3px solid var(--fucsia);outline-offset:2px}
+
+  /* ---- ejemplos ---- */
+  .ejemplos{margin:1.1rem 0 0;display:flex;flex-wrap:wrap;gap:.45rem}
+  .ejemplos button{
+    background:transparent;color:var(--tinta-suave);border:1px solid var(--hueso);
+    font-weight:400;font-size:.9rem;padding:.3rem .7rem;
+  }
+  .ejemplos button:hover{color:var(--tinta);border-color:var(--tinta-suave);background:transparent}
+
+  /* ---- respuesta ---- */
+  .respuesta{margin-top:2.5rem}
+  .meta{
+    display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:baseline;
+    font-size:.88rem;color:var(--tinta-suave);margin-bottom:.6rem;
+  }
+  .meta .materia{color:var(--fucsia);font-weight:600}
+  .tema{font-size:1.05rem;font-weight:600;margin:0 0 1.4rem}
+  .socratica{
+    font-size:1.5rem;line-height:1.35;font-weight:350;letter-spacing:-.01em;
+    margin:0;padding-left:1.1rem;border-left:4px solid var(--ambar);
+  }
+  .pistas{margin:2rem 0 0;padding:0;list-style:none}
+  .pistas li{
+    padding:.75rem 0 .75rem 1.1rem;border-top:1px solid var(--hueso);
+    background-image:linear-gradient(180deg,var(--fucsia) 0 25%,var(--ambar) 25% 55%,var(--verde) 55% 100%);
+    background-size:4px 100%;background-repeat:no-repeat;background-position:0 .75rem;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .pistas li{animation:aparece .22s ease-out}
+  }
+  @keyframes aparece{from{opacity:0;transform:translateY(-4px)}to{opacity:1}}
+  .acciones{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem}
+  .nota{
+    margin-top:2rem;padding:.9rem 1rem;background:var(--hueso);
+    border-radius:var(--radio);font-size:.92rem;
+  }
+  .nota span{font-weight:600}
+  .vacio{border-left:4px solid var(--fucsia);padding-left:1.1rem}
+  footer{
+    margin-top:4rem;padding-top:1rem;border-top:1px solid var(--hueso);
+    font-size:.85rem;color:var(--tinta-suave);
+  }
+  footer b{font-weight:600;color:var(--verde)}
+  .oculto{display:none}
+</style>
+</head>
+<body>
+<div class="aguayo"></div>
+
+<div class="marco">
+  <header>
+    <h1>Mochila Virtual</h1>
+    <p>
+      Preguntale lo que no entendiste de la clase. No te va a dar la respuesta:
+      te va a devolver una pregunta para que la encuentres vos.
+      Funciona <span class="sede">sin internet</span>, dentro de la red del colegio.
+    </p>
+  </header>
+
+  <div class="caja">
+    <label for="pregunta" class="oculto">Tu pregunta</label>
+    <textarea id="pregunta" rows="2" placeholder="No entiendo los quebrados..."></textarea>
+    <div class="barra">
+      <small id="estado">Conectando con el servidor</small>
+      <button id="enviar">Preguntar</button>
+    </div>
+  </div>
+
+  <div class="ejemplos" id="ejemplos"></div>
+
+  <section class="respuesta" id="respuesta" aria-live="polite"></section>
+
+  <footer>
+    Servidor: Raspberry Pi 3 en la red local del colegio ·
+    <b id="fragmentos">–</b> conceptos del curriculo cargados ·
+    no se guarda ningun dato personal de los estudiantes
+  </footer>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const EJEMPLOS = [
+  "no entiendo los quebrados",
+  "como saco el area de mi aula",
+  "de donde saca la comida una planta",
+  "por que me canso mas en La Paz",
+  "cual es el sujeto de una oracion",
+  "por que Bolivia perdio el mar",
+];
+
+let ultima = null;
+let pistasVisibles = 0;
+
+EJEMPLOS.forEach(t => {
+  const b = document.createElement("button");
+  b.textContent = t;
+  b.onclick = () => { $("pregunta").value = t; preguntar(); };
+  $("ejemplos").appendChild(b);
+});
+
+async function salud(){
+  try{
+    const r = await (await fetch("/api/salud")).json();
+    $("estado").textContent = r.estado === "ok" ? "Listo" : "Sin contenido cargado";
+    $("fragmentos").textContent = r.fragmentos;
+  }catch(e){
+    $("estado").textContent = "El servidor no responde. Revisa que el servicio este activo.";
+  }
+}
+
+async function preguntar(){
+  const texto = $("pregunta").value.trim();
+  if (texto.length < 3) return;
+  $("enviar").disabled = true;
+  $("estado").textContent = "Buscando en la mochila";
+  try{
+    const r = await fetch("/api/preguntar", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({texto})
+    });
+    if(!r.ok) throw new Error(r.status);
+    ultima = await r.json();
+    pistasVisibles = 0;
+    dibujar();
+    $("estado").textContent = "Listo";
+  }catch(e){
+    $("estado").textContent = "No se pudo consultar. Revisa la conexion con el servidor.";
+  }finally{
+    $("enviar").disabled = false;
+  }
+}
+
+function dibujar(){
+  const caja = $("respuesta");
+  caja.innerHTML = "";
+
+  if(!ultima.encontrado){
+    caja.innerHTML = `<div class="vacio"><p class="socratica" style="border:0;padding:0">${ultima.mensaje}</p></div>`;
+    if(ultima.cercanos && ultima.cercanos.length){
+      caja.innerHTML += `<div class="nota"><span>Temas parecidos que si estan:</span> ${ultima.cercanos.join(" · ")}</div>`;
+    }
+    return;
+  }
+
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  meta.innerHTML = `<span class="materia">${ultima.asignatura}</span>
+                    <span>${ultima.nivel || ""}</span>
+                    <span>${ultima.campo || ""}</span>`;
+  caja.appendChild(meta);
+
+  const tema = document.createElement("p");
+  tema.className = "tema";
+  tema.textContent = ultima.tema;
+  caja.appendChild(tema);
+
+  const q = document.createElement("p");
+  q.className = "socratica";
+  q.textContent = ultima.pregunta;
+  caja.appendChild(q);
+
+  const lista = document.createElement("ul");
+  lista.className = "pistas";
+  lista.id = "lista-pistas";
+  caja.appendChild(lista);
+  for(let i=0;i<pistasVisibles;i++){
+    const li = document.createElement("li");
+    li.textContent = ultima.pistas[i];
+    lista.appendChild(li);
+  }
+
+  const acciones = document.createElement("div");
+  acciones.className = "acciones";
+  if(pistasVisibles < (ultima.pistas||[]).length){
+    const b = document.createElement("button");
+    b.className = "suave";
+    b.textContent = pistasVisibles === 0 ? "Dame una pista" : "Otra pista";
+    b.onclick = () => { pistasVisibles++; dibujar(); };
+    acciones.appendChild(b);
+  }
+  if(ultima.error_comun){
+    const b = document.createElement("button");
+    b.className = "suave";
+    b.textContent = "Donde se equivocan todos";
+    b.onclick = () => {
+      b.remove();
+      const n = document.createElement("div");
+      n.className = "nota";
+      n.innerHTML = `<span>Cuidado con esto:</span> ${ultima.error_comun}`;
+      caja.appendChild(n);
+    };
+    acciones.appendChild(b);
+  }
+  caja.appendChild(acciones);
+
+  if(ultima.lengua_originaria){
+    const n = document.createElement("div");
+    n.className = "nota";
+    n.innerHTML = `<span>En tu idioma:</span> ${ultima.lengua_originaria}`;
+    caja.appendChild(n);
+  }
+}
+
+$("enviar").onclick = preguntar;
+$("pregunta").addEventListener("keydown", e => {
+  if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); preguntar(); }
+});
+salud();
+</script>
+</body>
+</html>
