@@ -9,7 +9,7 @@ PISTAS:
 - El lago Titicaca esta cerca. En que ayuda el agua de un lago grande a los cultivos de noche?
 - Que alimentos resisten el frio del altiplano y se pueden guardar mucho tiempo?
 ERROR COMUN: pensar que Tiwanaku fue parte del imperio inca; es muy anterior.
-LENGUA: aymara: suka kollu (camellon de cultivo)
+PALABRAS TRADUCIDAS: aymara: suka kollu (camellon de cultivo)
 
 ---
 
